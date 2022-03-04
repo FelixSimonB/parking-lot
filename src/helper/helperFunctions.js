@@ -1,3 +1,5 @@
+import { PARKING_FEE } from './constants';
+
 export const findSlot = (parkingLot, size, entryPoint) => {
     let temp = [...parkingLot]
     
@@ -22,4 +24,19 @@ export const findSlot = (parkingLot, size, entryPoint) => {
     }
 
     return null
+}
+
+export const calculateParkingFee = (hours, size) => {
+    hours = Math.round(hours)
+    if(hours <= 3) {
+        return 40
+    } else if(hours > 24) {
+        let remainder = hours % 24
+        let fee = (((hours - remainder)/24) * 5000) + (remainder * PARKING_FEE[size])
+        return fee
+    } else {
+        let remainder = hours - 3
+        let fee = (remainder * PARKING_FEE[size]) + 40
+        return fee
+    }
 }

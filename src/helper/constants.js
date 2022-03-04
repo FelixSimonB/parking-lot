@@ -30,6 +30,13 @@ export const PARK_WIDTH = {
     M: 3,
     L: 3
 }
+
+export const PARKING_FEE = {
+    S: 20,
+    M: 60,
+    L: 100
+}
+
 export const getParkingSize = (size) => {
     switch (size) {
         case 0:
@@ -43,13 +50,25 @@ export const getParkingSize = (size) => {
     }
 }
 
+
+export const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+}
+
 //INPUT
 export const NO_ENTRY_POINTS = 3
 
-export const getEntryPoints = () =>{
+export const getEntryPoints = (noEntryPoints) =>{
     let entryPoints = []
 
-    for (let index = 0; index < NO_ENTRY_POINTS; index++) {
+    for (let index = 0; index < noEntryPoints; index++) {
         let value = index + 1
         entryPoints.push({
             label: (value + 9).toString(36).toUpperCase(),
@@ -60,7 +79,7 @@ export const getEntryPoints = () =>{
     return entryPoints
 }
 
-export const ENTRY_POINTS = getEntryPoints()
+export const ENTRY_POINTS = getEntryPoints(NO_ENTRY_POINTS)
 
 //INPUTS
 

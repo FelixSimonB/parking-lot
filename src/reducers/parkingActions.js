@@ -1,7 +1,6 @@
 import { SETTING_PARKING_LOT, SET_PARKING_LOT, PARK, UNPARK } from "./parkingTypes"
 
 export const initParking = (parkingLot) => {
-    
     return {
         type: SET_PARKING_LOT,
         payload: parkingLot
