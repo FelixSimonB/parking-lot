@@ -16,6 +16,7 @@ export default function App() {
     const [intialized, setIntialized] = useState(false)
     const [alert, setAlert] = useState(null)
 
+    const inputNoEntryPoints = useRef()
     const inputParkingMap = useRef()
     const inputParkingSpace = useRef()
     
@@ -33,20 +34,22 @@ export default function App() {
         try {
             setParkingMap(JSON.parse(inputParkingMap?.current?.value))
             setParkingSpace(JSON.parse(inputParkingSpace?.current?.value))
+            setNoEntryPoints(JSON.parse(inputNoEntryPoints?.current?.value))
 
             let map = JSON.parse(inputParkingMap?.current?.value)
             let space = JSON.parse(inputParkingSpace?.current?.value)
-
+            let entrypoints = JSON.parse(inputNoEntryPoints?.current?.value)
+        
             if (map.length != space.length) {
-                throw("Parking Map size is not equal to Parking Space")
+                throw("Parking Map size and Parking Space size mismatch")
             }
 
             map?.map((parking, index) => {                
                 if (parking > 2) {
                     throw("Invalid size in Parking Map")
                 }
-                if (space[index].length != noEntryPoints) {
-                    throw("Invalid length in Parking Space")
+                if (space[index].length != entrypoints) {
+                    throw("Number of Entry Points and length of tuples in Parking Space mismatch")
                 }
                 lot.push({ slot: index, numericSize: parking, size: getParkingSize(parking), location: space[index], isOccupied: false })
             })
@@ -126,6 +129,7 @@ export default function App() {
                         onChange={(event) => event.target.value < 1
                             ? (event.target.value = '')
                             : handleEntryPointsChange}
+                        inputRef={inputNoEntryPoints}
                         defaultValue={noEntryPoints}
                     />
                     <TextField
