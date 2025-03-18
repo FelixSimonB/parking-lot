@@ -1,4 +1,7 @@
-# Parking Lot
+# To install
+> npm install
+> npm run
+# Parking Lot Problem
 
 You were hired by XYZ Corp. to implement a parking allocation system for their new malling complex, the Object-Oriented Mall.
 The new parking system will pre-assign a slot for every vehicle coming into the complex. No vehicle can freely choose a parking
